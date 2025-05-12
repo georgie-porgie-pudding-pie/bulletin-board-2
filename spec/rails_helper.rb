@@ -27,6 +27,13 @@ require "support/headless_chrome"
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+
+Capybara.configure do |config|
+  # Only treat an element as a match if its id, name or label text 
+  # exactly equals your locator.
+  config.exact = true
+end
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
